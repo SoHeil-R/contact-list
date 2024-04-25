@@ -4,7 +4,10 @@ const contacts = new mongoose.Schema(
     {
         name: String,
         mail: String,
-        phone: Number,
+        phone: {
+            type: Object,
+            default: {}
+        },
         job: String,
         avatar: String,
         banner: String,

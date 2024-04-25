@@ -7,24 +7,18 @@ export async function POST(request: NextRequest) {
     try {
         await MongoDb()
         let data = await request.formData();
+        console.log(data)
+        let socials: any = data.get('socials') || '';
         let contact = {
             name: data.get('name'),
             mail: data.get('mail'),
-            phone: data.get('phone'),
+            phone: data.getAll('phone'),
             job: data.get('job'),
             avatar: await upload(data.get('avatar')),
             banner: await upload(data.get('banner')),
-            socials: {
-                telegram: data.get('telegram') || null,
-                instagram: data.get('instagram') || null,
-                discord: data.get('discord') || null,
-                facebook: data.get('facebook') || null,
-                twitter: data.get('twitter') || null,
-                linkedin: data.get('linkedin') || null,
-            }
+            socials: JSON.parse(socials)
         }
         await contacts.create(contact);
-        console.log(contact)
         return NextResponse.json({message: "success"});
     } catch (e: any) {
         console.log(e.message)

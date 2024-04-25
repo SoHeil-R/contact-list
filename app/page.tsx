@@ -31,7 +31,7 @@ export default function Home() {
             setData(result.data);
         setCount(result.count);
         setLoading(false);
-    }, [limit, fSearch])
+    }, [limit, fSearch, count])
 
     useEffect(()=>{
         getContacts();
@@ -77,10 +77,10 @@ export default function Home() {
                         </div>
                     )
                 }
-                <CreateContact changeData={setData} />
+                <CreateContact changeData={setCount} />
             </div>
             <div className="w-full h-[50px] bg-[#EAEAEA] flex px-8">
-                <div className="w-1/3 flex justify-start items-center gap-2 font-iransans text-[13px] text-gray-600">طراحی شده توسط سهیل رضایی | <span>نسخه (0.3.0)</span></div>
+                <div className="w-1/3 flex justify-start items-center gap-2 font-iransans text-[13px] text-gray-600">طراحی شده توسط سهیل رضایی | <span>نسخه (0.4.0)</span></div>
                 <div className="w-1/3 flex justify-center items-center font-iransans text-gray-800"> دفترچه تلفن سوشیال</div>
             </div>
         </>
